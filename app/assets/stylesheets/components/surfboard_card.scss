@@ -22,8 +22,7 @@
   overflow-y: hidden;
   padding: 20px;
   box-sizing: border-box;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+
   &::-webkit-scrollbar {
     display: block;
     width: 8px;
