@@ -1,34 +1,31 @@
-
 <div class="surfboards-index">
-<h1>ALL SURFBOARDS</h1>
-
-<% if @surfboards.any? %>
-<div id='surfboard-container'>
-  <ul>
-    <% @surfboards.each do |surfboard| %>
-      <li class="surfboard_card">
-          <% surfboard.photos.each do |photo| %>
-          <div class="surfboard-image">
-            <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
-          </div>
-        <% end %>
-        <div class="surfboard-info">
-          <h3><%= link_to surfboard.board_type, surfboard_path(surfboard) %></h3>
-        </div>
-      </li>
+<h1>DISCOVER</h1>
+  <div class="surfboards-container">
+    <% if @surfboards.any? %>
+      <div id='surfboard-container'>
+        <ul>
+          <% @surfboards.each do |surfboard| %>
+            <li class="surfboard_card">
+              <% surfboard.photos.each do |photo| %>
+                <div class="surfboard-image">
+                  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+                </div>
+              <% end %>
+              <div class="surfboard-info">
+                <h3><%= link_to surfboard.board_type, surfboard_path(surfboard) %></h3>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <p>Empty.</p>
     <% end %>
-  </ul>
   </div>
-<% else %>
-  <p>Empty.</p>
-<% end %>
 
-<%= link_to "CREATE NEW", new_surfboard_path, class: "create-new-link" %>
+  <div class="map-container" data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
 
-<div style="width: 100%; height: 600px;"
-  data-controller="map"
-  data-map-markers-value="<%= @markers.to_json %>"
-  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
-</div>
-
+  </div>
 </div>
