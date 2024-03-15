@@ -13,12 +13,14 @@ puts "Cleaning up database..."
 Surfboard.destroy_all
 puts "Database cleaned"
 
-20.times do |i|
-  User.create!(email: Faker::Internet.email, encrypted_password: Faker::Internet.password,password: Faker::Internet.password )
-end
-
- 20.times do |i|
-  Surfboard.create!(board_type: Faker::Creature::Animal.name,
-  description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ornare at elit non accumsan. Fusce sapien nisl, viverra in justo egestas, volutpat convallis lectus. Aliquam ut ipsum nec dolor molestie sagittis. Suspendisse volutpat laoreet ipsum eget pulvinar. Mauris sit amet lectus eget nisl cursus elementum sit amet ac massa. Mauris",
-  img_url: "https://source.unsplash.com/random?surfing", location: Faker::Address.city, user: User.first)
-end
+surfboard1 = Restaurant.new(
+board_type: 'Gnarly long-board in salmon-pink',
+description: 'Totally rad board for ripping the phattest breaks on',
+address: "Bali, Indonesia",
+user_id: 1
+)
+require "open-uri"
+file = URI.open('https://res.cloudinary.com/dh6gdchfj/image/upload/v1606940861/dishoom-cg_ggahzz.jpg')
+surfboard1.photo.attach(io: file, filename: 'dishoom-ken.png', content_type: 'image/jpg')
+surfboard1.save!
+puts 'Created surfboard1'

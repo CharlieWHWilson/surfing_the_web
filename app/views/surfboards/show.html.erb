@@ -2,9 +2,8 @@
 <h3><%= @surfboard.board_type %></h3>
 
 <%= cl_image_tag @surfboard.photos.first.key, alt: @surfboard.board_type, width: 200 %>
+
           <p>INFO <%= @surfboard.description %></p>
           <p>LOCATION <%= @surfboard.location %></p>
           <p>AVAILABILITY <%= @surfboard.availibility %></p>
-
-
-<%= link_to "BOOK", new_surfboard_booking_path(@surfboard) %>
+         <%= link_to "BOOK", new_surfboard_booking_path(@surfboard) %>

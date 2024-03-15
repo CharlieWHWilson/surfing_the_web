@@ -20,18 +20,16 @@ class BookingsController < ApplicationController
     @booking.surfboard = @surfboard
     @booking.user = @user
     if @booking.save
-      redirect_to booking_path(@booking)
+      redirect_to dashboard_path
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def approve
-
-  end
-
-  def decline
-
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+    redirect_to dashboard_path, status: :see_other
   end
 
   private

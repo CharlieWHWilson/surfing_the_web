@@ -13,14 +13,8 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  resources :bookings, only: [:index, :show] do
-    member do
-      post :approve
-      post :decline
-    end
-  end
-
   resources :surfboards, only: [:destroy]
+  resources :bookings, only: [:destroy]
 
   get "/dashboard", to: "pages#dashboard"
       # post 'approve', on: :member

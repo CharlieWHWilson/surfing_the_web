@@ -1,4 +1,8 @@
-<h1>MY DASHBOARD</h1>
+<div class="container pt-3">
+<div class="row justify-content-center">
+<div class="col-8 ">
+<h1>My dashboard</h1>
+
 <p> E-MAIL <%= @user.email %> </p>
   <h2> CREATED </h2>
   <ul>
@@ -7,15 +11,24 @@
     <% end %>
   </ul>
 
-  <h2> BOOKINGS </h2>
-  <ul>
-    <% @user.bookings.each do |booking|%>
-    <% duration_in_days = (booking.end_date - booking.start_date).to_i + 1 %>
-    <li>
-     <%= link_to "CREATE NEW", new_surfboard_path, class: "create-new-link" %>
+
 </div>
-    <%= booking.start_date.strftime("%B %e") %> to <%= booking.end_date.strftime("%B %e") %> -
-    <strong>(<%= duration_in_days %> <%= 'day'.pluralize(duration_in_days) %>)</strong>
-    </li>
-    <% end %>
-  </ul>
+</div>
+</div>
+
+<h2>All My Bookings</h2>
+
+
+  <% @user.bookings.each do |booking| %>
+  <% duration_in_days = (booking.end_date - booking.start_date).to_i + 1 %>
+<div class="card-product">
+  <img src="<%= cl_image_path booking.surfboard.photos.first.key %>" alt="<%= booking.surfboard.board_type %>" width="100" />
+  <div class="card-product-infos">
+    <p><%= booking.surfboard.board_type %></p>
+    <%= link_to "Delete", booking_path(booking), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+  <%#= cl_image_tag booking.surfboard.photos.first.key, alt: booking.surfboard.board_type, width: 100 %>
+  <p><%= booking.start_date.strftime("%B %e") %> - <%= booking.end_date.strftime("%B %e") %>
+  <strong>(<%= duration_in_days %> <%= 'day'.pluralize(duration_in_days) %>)</strong></p>
+</div>
+  <% end %>
+</div>

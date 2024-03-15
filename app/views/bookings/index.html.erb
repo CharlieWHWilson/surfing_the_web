@@ -1,9 +1,23 @@
-<h2>BOOKINGS</h2>
 
-<ul>
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-8 ">
+<h2>All My Bookings</h2>
+
+
+
   <% @bookings.each do |booking| %>
   <% duration_in_days = (booking.end_date - booking.start_date).to_i + 1 %>
-  <li>
-  <%= booking.surfboard.board_type %><p><%= booking.start_date.strftime("%B %e") %> - <%= booking.end_date.strftime("%B %e") %> <strong>(<%= duration_in_days %> <%= 'day'.pluralize(duration_in_days) %>)</strong></p></li>
+<div class="card-product">
+  <img src="<%= cl_image_path booking.surfboard.photos.first.key %>" alt="<%= booking.surfboard.board_type %>" width="100" />
+  <div class="card-product-infos">
+    <h2><%= booking.surfboard.board_type %></h2>
+  <%#= cl_image_tag booking.surfboard.photos.first.key, alt: booking.surfboard.board_type, width: 100 %>
+  <p><%= booking.start_date.strftime("%B %e") %> - <%= booking.end_date.strftime("%B %e") %>
+  <strong>(<%= duration_in_days %> <%= 'day'.pluralize(duration_in_days) %>)</strong></p>
+</div>
   <% end %>
-</ul>
+
+</div>
+</div>
+</div>
