@@ -6,12 +6,13 @@
   left: 0;
   z-index: -1;
   overflow: hidden;
-  margin-top: 50px;
+  margin-top: 16px;
   margin-bottom: 50px;
+  width: auto;
 }
 
 .video-background iframe {
-  width: 100vw;
+  width: 1000vw;
   height: calc(100vh - 100px);
   object-fit: cover;
   position: absolute;
@@ -35,4 +36,8 @@
   height: 100%;
   transform: translate(-50%, -50%);
   object-fit: cover;
+}
+
+.watermark {
+  display: none;
 }

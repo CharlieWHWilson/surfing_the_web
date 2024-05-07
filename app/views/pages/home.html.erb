@@ -1,9 +1,16 @@
 <div class="video-background">
-<iframe allow="fullscreen;autoplay" allowfullscreen height="720" src="https://streamable.com/e/bcu917?autoplay=1&nocontrols=1" width="1280" style="border:none;"></iframe>
+  <iframe allow="fullscreen;autoplay" allowfullscreen height="720" src="https://streamable.com/e/9tuq7k?autoplay=1&nocontrols=1"
+  width="1280" style="border:none;"></iframe>
 
 <div class="main-header">
+  <%# <h1>SURFIN THE WEB</h1> %>
+  <%= link_to "/surfboards", style: "text-decoration: none; color: white;" do %>
   <h1>SURFIN THE WEB</h1>
+  <% end %>
   <p>Ride the wave</p>
+  <%= link_to "/surfboards", style: "text-decoration: none; color: white;" do %>
+  <button> EXPLORE</button>
+  <% end %>
 </div>
 
 <div class="description">
@@ -27,4 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
   typingEffect();
 });
+
+document.addEventListener('DOMContentLoaded', function() {
+  var iframe = document.querySelector('.video-background iframe');
+  var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+  var watermark = innerDoc.querySelector('.watermark');
+
+  if (watermark) {
+    watermark.style.display = 'none';
+  }
+});
 </script>
+</div>

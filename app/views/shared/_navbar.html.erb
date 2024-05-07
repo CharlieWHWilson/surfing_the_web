@@ -1,7 +1,7 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <div class="container-fluid">
     <%= link_to "/", class: "navbar-brand" do %>
-   <%= image_tag "https://cdn.midjourney.com/9a2acb71-a98a-41bc-8c92-28f1d924eeba/0_2.webp", alt: "Home", class: "navbar-brand-image" %>
+    <%= image_tag "surf-the-web.png", alt: "Home", class: "navbar-brand-image" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,7 +14,7 @@
 
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to "SURFBOARDS", "/surfboards", class: "nav-link" %>
+            <%= link_to "SURFBOARDS", surfboards_path, class: "nav-link" %>
           </li>
           <li class="nav-item active">
             <%= link_to "DASHBOARD", "/dashboard", class: "nav-link" %>
