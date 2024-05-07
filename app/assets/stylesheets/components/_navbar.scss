@@ -1,34 +1,31 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: #000;
-  color: white;
+  background: #E0F4FF;
+  padding-bottom: 60px;
+  color: rgb(0, 0, 0);
 
   .navbar-brand {
-    color: #fff;
+    color: #000000;
     &:hover {
       color: lighten(#fff, 10%);
     }
   }
 }
 
-.navbar-brand-image {
-  height: 50px;
-  width: 100px;
-}
-
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 80px;
 }
 
   .navbar-nav .nav-item .nav-link {
-    color: #fff;
+    color: #000000;
     &:hover {
-      color: lighten(#fff, 10%);
+      background-color: #CAF4FF;
+      text-decoration: none;
     }
   }

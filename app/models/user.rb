@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   has_many :surfboards
   has_many :bookings
-  has_many :surfboards, through: :bookings
+  # has_many :surfboards, through: :bookings
 end

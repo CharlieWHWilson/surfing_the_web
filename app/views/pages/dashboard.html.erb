@@ -5,8 +5,8 @@
       <div class="card profile-avatar-card">
         <div class="card-body text-center">
           <%= image_tag "https://i.etsystatic.com/35508757/r/il/c35d1b/4057837775/il_fullxfull.4057837775_ghge.jpg", class: "avatar rounded-circle mb-3", alt: "User avatar" %>
-          <h2 class="dashboard-section__user-name">TYLER</h2>
-          <p class="dashboard-section__user-username">@tylerdurden</p>
+          <h2 class="dashboard-section__user-name"><%= current_user.user_name.present? ? current_user.user_name : "tyler" %></h2>
+          <p class="dashboard-section__user-username"><%= current_user.email %></p>
           <p class="dashboard-section__user-description">Lover of the ocean waves and creating soap.</p> 📍 LA.  </p>
         </div>
       </div>
@@ -21,11 +21,13 @@
             <li> LOCATION <%= surfboard.location %>, TYPE <%= surfboard.board_type %>, <%= link_to surfboard.board_type, surfboard_path(surfboard) %></li>
             <% end %>
           </ul>
+          <div class="text-center">
+          <%= button_to "CREATE NEW", new_surfboard_path, method: :get, class: "btn create-new-link" %>
+          </div>
         </div>
       </div>
     </div>
 
-  <%= link_to "CREATE NEW", new_surfboard_path, class: "create-new-link" %>
 
   <br>
 
