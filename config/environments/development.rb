@@ -62,7 +62,7 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  config.action_mailer.default_url_options = { host: 'https://surfing-the-web-4ea04c8e9eec.herokuapp.com/'}
+  config.action_mailer.default_url_options = { host: 'https://surfboard-rent-70797078df7a.herokuapp.com/'}
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true
