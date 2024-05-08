@@ -1,6 +1,6 @@
 <div class="surfboards-index">
   <div class="page-title">
-    DISCOVER the wave
+    DISCOVER THE OCEAN
   </div>
   <div class="row w-100">
   <div class="col-8">
@@ -9,17 +9,21 @@
 
 
           <% @surfboards.each do |surfboard| %>
-            <div class="surfboard_card">
-              <%# surfboard.photos.each do |photo| %>
-                <div class="surfboard-image">
-                  <%= cl_image_tag surfboard.photos.first.key, height: 300, width: 400, crop: :fill %>
+
+
+            <div class="card-trip">
+              <%= cl_image_tag surfboard.photos.first.key, crop: :fill %>
+              <div class="card-trip-infos">
+                <div>
+                  <h2><%= link_to surfboard.board_type, surfboard_path(surfboard) %></h2>
+                  <p><%= surfboard.location %></p>
                 </div>
-              <%# end %>
-              <div class="surfboard-info">
-                <h3><%= link_to surfboard.board_type, surfboard_path(surfboard) %></h3>
+                <h2 class="card-trip-pricing"><%= surfboard.price.present? ? "€#{surfboard.price}" : "€50" %> </h2>
               </div>
             </div>
+
           <% end %>
+
 
 
     <% else %>

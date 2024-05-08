@@ -38,6 +38,8 @@ class SurfboardsController < ApplicationController
   private
 
   def surfboard_params
-    params.require(:surfboard).permit(:board_type, :description, :location, :img_url, :availibility, :user_id, photos: [])
+    params.require(:surfboard).permit(:board_type, :description, :availibility, :location, :price, photos: []).tap do |whitelisted|
+      whitelisted[:price] = whitelisted[:price].to_i
+    end
   end
 end

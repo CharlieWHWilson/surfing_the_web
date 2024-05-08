@@ -1,61 +1,99 @@
-<div class="container pt-5">
-<h3><%= @surfboard.board_type %></h3>
-
+<div class="container pt-5 d-flex justify-content-center">
+<br>
+<br>
 <% if @surfboard.photos.length == 1 %>
-<%= cl_image_tag @surfboard.photos.first.key, alt: @surfboard.board_type, width: 500  %>
+  <div class="card mb-5" style="width: 60rem;">
+    <%= cl_image_tag @surfboard.photos.first.key, alt: @surfboard.board_type, width: 500, class: "card-img-top"  %>
+  <div class="card-body">
+    <h3 class="card-title"><%= @surfboard.board_type %></h3>
+    <p class="card-text"><%= "€#{@surfboard.price} / day" %></p>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= @surfboard.description %></li>
+    <li class="list-group-item">Availability: <%= @surfboard.availibility %></li>
+    <li class="list-group-item">Location: <%= @surfboard.location %></li>
+  </ul>
+  <div class="card-body">
+  <div data-controller="toggle" class="text-center">
+    <button data-action="click->toggle#fire" class="my_btn btn-outline-primary">Book Now</button>
+    <div class="form-inputs d-none" data-toggle-target="togglableElement">
+      <%= simple_form_for [@surfboard, @booking] do |f| %>
+        <%= f.date_field :start_date %>
+        <%= f.date_field :end_date %>
+        <div class="form-actions">
+          <%= f.submit %>
+      <% end %>
+        </div>
+    </div>
+  </div>
+  </div>
+  <div class="two__buttons d-flex justify-content-center">
+  <% if @surfboard.user == current_user %>
+          <%= button_to "Delete", erase_path(@surfboard), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, type: "button", class: "btn btn-outline-danger" %>
+        <% end %>
+    </div>
+</div>
 <% else %>
+
 <!-- this codes below are for carousel -->
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 50%;">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+<div class="card mb-5" style="width: 60rem;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 100%;">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      </div>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <%= cl_image_tag @surfboard.photos[0].key, alt: @surfboard.board_type, class: "d-block w-100" %>
+        </div>
+        <div class="carousel-item">
+          <%= cl_image_tag @surfboard.photos[1].key, alt: @surfboard.board_type, class: "d-block w-100" %>
+        </div>
+        <div class="carousel-item">
+          <%= cl_image_tag @surfboard.photos[2].key, alt: @surfboard.board_type, class: "d-block w-100" %>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+     <div class="card-body">
+    <h3 class="card-title"><%= @surfboard.board_type %></h3>
+    <p class="card-text"><%= "€#{@surfboard.price} / day" %></p>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <%= cl_image_tag @surfboard.photos[0].key, alt: @surfboard.board_type, class: "d-block w-100" %>
-    </div>
-    <div class="carousel-item">
-      <%= cl_image_tag @surfboard.photos[1].key, alt: @surfboard.board_type, class: "d-block w-100" %>
-    </div>
-    <div class="carousel-item">
-      <%= cl_image_tag @surfboard.photos[2].key, alt: @surfboard.board_type, class: "d-block w-100" %>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"><%= @surfboard.description %></li>
+    <li class="list-group-item">Availability: <%= @surfboard.availibility %></li>
+    <li class="list-group-item">Location: <%= @surfboard.location %></li>
+  </ul>
+  <div class="card-body">
+  <div data-controller="toggle" class="text-center">
+    <div class="two__buttons d-flex justify-content-center">
+      <button data-action="click->toggle#fire" class="my_btn btn-outline-primary">Book Now</button>
+      </div>
+      <div class="form-inputs d-none" data-toggle-target="togglableElement">
+        <%= simple_form_for [@surfboard, @booking] do |f| %>
+          <%= f.date_field :start_date %>
+          <%= f.date_field :end_date %>
+          <div class="form-actions">
+            <%= f.submit %>
+        <% end %>
+          </div>
     </div>
   </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  </div>
+  <div class="two__buttons d-flex justify-content-center">
+  <% if @surfboard.user == current_user %>
+          <%= button_to "Delete", erase_path(@surfboard), method: :delete, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, type: "button", class: "btn btn-outline-danger" %>
+        <% end %>
+    </div>
 </div>
 <% end %>
 <!-- this codes above are for carousel -->
-
-<br>
-          <p>Description: <%= @surfboard.description %></p>
-          <p>Location: <%= @surfboard.location %></p>
-          <p>Availability: <%= @surfboard.availibility %></p>
-
-
-<div data-controller="toggle">
-<button data-action="click->toggle#fire" class="btn btn-outline-primary">Book Now</button>
-
-  <%#= link_to "Book Now", new_surfboard_booking_path(@surfboard) %>
-
-
-<div class="form-inputs d-none" data-toggle-target="togglableElement">
-<%= simple_form_for [@surfboard, @booking] do |f| %>
-  <%= f.date_field :start_date %>
-  <%= f.date_field :end_date %>
-
-  <div class="form-actions">
-  <%= f.submit %>
-<% end %>
 </div>
-</div>
-</div>
-
-<%= link_to "Delete", erase_path(@surfboard), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "text-danger" %>
