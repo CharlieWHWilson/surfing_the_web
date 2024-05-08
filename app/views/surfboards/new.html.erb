@@ -1,6 +1,10 @@
-<div class="form-container">
-  <h1>CREATE NEW</h1>
 
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+url(<%= asset_path 'jakob-owens-nmXwoDphQGs-unsplash.jpg' %>)">
+  Add Your New Board
+</div>
+<div class="parent-container">
+<div class="form-container">
     <%= simple_form_for(@surfboard) do |form| %>
   <div class="field-container">
         <%= form.input :board_type %>
@@ -15,12 +19,18 @@
         <%= form.input :availibility %>
   </div>
   <div class="field-container">
+        <%= form.input :price, label: "price €/day" %>
+  </div>
+  <div class="field-container">
         <%= form.input :location,
         label: "location",
   input_html: {data: {address_autocomplete_target: "location"}, class: "d-none"},
   wrapper_html: {data: {controller: "address-autocomplete", address_autocomplete_api_key_value: ENV["MAPBOX_API_KEY"]}}
 %>
   </div>
-      <%= form.submit %>
+      <div style="text-align: center;">
+        <%= form.submit %>
+      </div>
     <% end %>
+</div>
 </div>

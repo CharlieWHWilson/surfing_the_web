@@ -15,14 +15,17 @@
     <div class="col-12 mb-4">
       <div class="card profile-details-card">
         <div class="card-body">
-          <h2 class="dashboard-section__creations-title">CREATIONS</h2>
+          <h2 class="dashboard-section__creations-title">MY SURFBOARDS</h2>
           <ul>
             <% @user.surfboards.each do |surfboard| %>
-            <li> LOCATION <%= surfboard.location %>, TYPE <%= surfboard.board_type %>, <%= link_to surfboard.board_type, surfboard_path(surfboard) %></li>
+            <li> Location <%= surfboard.location %> - <%= surfboard.board_type %>, <%= link_to surfboard_path(surfboard) do %>
+            <i class="fa-solid fa-circle-chevron-right"></i>
+            <% end %>
+            </li>
             <% end %>
           </ul>
           <div class="text-center">
-          <%= button_to "CREATE NEW", new_surfboard_path, method: :get, class: "btn create-new-link" %>
+          <%= button_to "CREATE NEW", new_surfboard_path, method: :get, class: "my_btn create-new-link" %>
           </div>
         </div>
       </div>
